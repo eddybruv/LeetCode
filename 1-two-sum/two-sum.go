@@ -3,8 +3,8 @@ func twoSum(nums []int, target int) []int {
 
     for i, value:= range nums {
         find := target - value;
-        if _, ok := indexMap[find]; ok {
-            return []int{indexMap[find], i}
+        if index, ok := indexMap[find]; ok {
+            return []int{index, i}
         }
 
         indexMap[value] = i
