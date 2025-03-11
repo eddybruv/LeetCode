@@ -1,13 +1,29 @@
+import (
+	"slices"
+)
+
 func smallerNumbersThanCurrent(nums []int) []int {
+	// create a temp copy of original array
+	sortedNums := append([]int(nil), nums...)
+
+	// sort temp
+	slices.Sort(sortedNums)
+
+	// create result array
 	result := []int{}
-	for _, value := range nums {
-		count := 0
-		for _, value2 := range nums {
-			if value2 < value {
-				count += 1
-			}
+
+	// create value index hash map
+	valueIndexMap := make(map[int]int)
+
+	for index, value := range sortedNums {
+		if _, ok := valueIndexMap[value]; !ok {
+			valueIndexMap[value] = index
 		}
-        result = append(result, count)
 	}
+
+	for _, value := range nums {
+		result = append(result, valueIndexMap[value])
+	}
+
 	return result
 }
