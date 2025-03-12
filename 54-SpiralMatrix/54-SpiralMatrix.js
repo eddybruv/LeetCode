@@ -1,58 +1,58 @@
+// Last updated: 3/11/2025, 10:38:05 PM
 /**
  * @param {number[][]} matrix
  * @return {number[]}
  */
-var spiralOrder = function (matrix) {
-  let res = []
-  let matrixCopy = matrix
+var spiralOrder = function(matrix) {
+    let completedRow = new Set();
+    let completedCol = new Set();
+    let direction = 'col';
+    let directionValRow = 1;
+    let directionValCol = 1;
 
-  let i = 0, j = 0
+    let res = [];
+    let row = 0, col = 0;
+    let n = matrix.length * matrix[row].length;
+    
+    while(res.length < n){
+        res.push(matrix[row][col]);
+        if(direction == 'row' && !completedRow.has(row + directionValRow) && row < matrix.length - 1 && row >= 0){
+            if(row == 0 && directionValRow == -1){
+                completedCol.add(col);
+                direction = 'col';
+                col += directionValCol;
+                directionValRow *= -1;
+                continue;
+            } else {
+                row += directionValRow;
+            }
+        } else if(direction == 'row'){
+            completedCol.add(col);
+            direction = 'col';
+            col += directionValCol;
+            directionValRow *= -1;
+            continue;
+        }
 
-  while (matrixCopy.length && matrixCopy[0].length) {
-    console.log("length", matrixCopy.length)
-    //  Step 1: push top line and remove from matrix
-    res.push(...matrixCopy[0])
-    matrixCopy.shift()
-
-    console.log("step 1", res, matrixCopy)
-
-
-    // Step 2: push the last elements of each array in the matrix and remove those elements
-    for (let k = 0; k < matrixCopy.length; k++) {
-      if (!matrixCopy[k].length) continue
-      console.log(matrixCopy.length)
-
-      const lastElIndex = matrixCopy[k].length - 1
-      res.push(matrixCopy[k][lastElIndex])
-      matrixCopy[k].pop()
+        if(direction == 'col' && !completedCol.has(col + directionValCol) && col < matrix[row].length - 1 && col >= 0){
+            if(col == 0 && directionValCol == -1){
+                completedRow.add(row);
+                direction = 'row';
+                row += directionValRow;
+                directionValCol *= -1;
+            } else {
+                //completedRow.add(row);
+                col += directionValCol;
+            }
+            
+        } else if(direction == 'col'){
+            completedRow.add(row);
+            direction = 'row';
+            row += directionValRow;
+            directionValCol *= -1;
+        }
     }
 
-    console.log("step 2", res, matrixCopy)
-
-    // Step 3: remove last line in reverse order
-    if (matrixCopy[0]) {
-      res.push(...matrixCopy[matrixCopy.length - 1].reverse())
-      matrixCopy.pop()
-    }
-
-    console.log("step 3", res, matrixCopy)
-
-
-    // Step 4: remove first elements of each arr in reverse order
-    if (matrixCopy[0]) {
-
-      for (let k = matrixCopy.length - 1; k >= 0; k--) {
-        if (!matrixCopy[k].length) continue
-        res.push(matrixCopy[k][0])
-        matrixCopy[k].shift()
-        if (!matrixCopy[k].length) matrixCopy.splice(k, 1)
-      }
-    }
-
-    console.log("step 4", res, matrixCopy)
-
-
-  }
-
-  return res
+    console.log(res);
+    return res;
 };
