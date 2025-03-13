@@ -1,3 +1,4 @@
+// Last updated: 3/12/2025, 8:57:56 PM
 /**
  * @param {character[][]} grid
  * @return {number}
@@ -9,7 +10,7 @@ var numIslands = function (grid) {
 
     const bfs = (r, c) => {
         const queue = [];
-        visit[pts(r, c)] = "."
+        visit.add(pts(r, c))
         queue.push([r, c])
 
         while (queue.length) {
@@ -21,9 +22,9 @@ var numIslands = function (grid) {
                 r = row + dr;
                 c = col + dc;
 
-                if ((r >= 0 && r < rows) && (c >= 0 && c < cols) && grid[r][c] === '1' && !visit[pts(r, c)]) {
+                if ((r >= 0 && r < rows) && (c >= 0 && c < cols) && grid[r][c] === '1' && !visit.has(pts(r, c))) {
                     queue.push([r, c])
-                    visit[pts(r, c)] = "."
+                    visit.add(pts(r, c))
                 }
             }
         }
@@ -33,12 +34,12 @@ var numIslands = function (grid) {
     let rows = grid.length;
     let cols = grid[0].length;
 
-    let visit = {};
+    let visit = new Set();
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
             let arr = [r, c]
-            if (grid[r][c] === '1' && !visit[pts(r, c)]) {
+            if (grid[r][c] === '1' && !visit.has(pts(r, c))) {
                 bfs(r, c);
                 count += 1
             }
