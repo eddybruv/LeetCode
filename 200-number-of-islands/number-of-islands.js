@@ -37,7 +37,6 @@ var numIslands = function (grid) {
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-            let arr = [r, c]
             if (grid[r][c] === '1' && !visit.has(pts(r, c))) {
                 bfs(r, c);
                 count += 1
