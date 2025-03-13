@@ -1,4 +1,4 @@
-// Last updated: 3/12/2025, 8:57:56 PM
+// Last updated: 3/12/2025, 8:58:32 PM
 /**
  * @param {character[][]} grid
  * @return {number}
@@ -38,7 +38,6 @@ var numIslands = function (grid) {
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-            let arr = [r, c]
             if (grid[r][c] === '1' && !visit.has(pts(r, c))) {
                 bfs(r, c);
                 count += 1
