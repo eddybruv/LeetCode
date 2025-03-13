@@ -14,7 +14,7 @@ var numIslands = function (grid) {
 
         while (queue.length) {
             [row, col] = queue.shift()
-            const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+            const directions = [[1, 0], [-1, 0], [0, 1], [0, -1],]
 
             for (let dir of directions) {
                 [dr, dc] = dir;
