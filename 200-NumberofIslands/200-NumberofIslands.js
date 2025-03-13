@@ -1,4 +1,4 @@
-// Last updated: 3/12/2025, 8:58:37 PM
+// Last updated: 3/12/2025, 9:29:45 PM
 /**
  * @param {character[][]} grid
  * @return {number}
@@ -15,7 +15,7 @@ var numIslands = function (grid) {
 
         while (queue.length) {
             [row, col] = queue.shift()
-            const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+            const directions = [[1, 0], [-1, 0], [0, 1], [0, -1],]
 
             for (let dir of directions) {
                 [dr, dc] = dir;
