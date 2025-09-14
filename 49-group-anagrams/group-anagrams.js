@@ -8,7 +8,6 @@ var groupAnagrams = function (strs) {
 
     for (const str of strs) {
         let sortedStr = [...str.split('').sort()].join('');
-        console.log(sortedStr)
         obj[sortedStr] = obj[sortedStr] ? [str, ...obj[sortedStr]] : [str];
     }
 
