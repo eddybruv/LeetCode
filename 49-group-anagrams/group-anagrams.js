@@ -6,9 +6,12 @@ var groupAnagrams = function (strs) {
     let obj = {};
 
     for (const str of strs) {
-        let sortedStr = str.split('').sort().join('');
-        obj[sortedStr] = obj[sortedStr] ? [str, ...obj[sortedStr]] : [str];
+        const sortedStr = str.split("").sort().join("");
+        if (Object.hasOwn(obj, sortedStr)) {
+            obj[sortedStr].push(str)
+        } else {
+            obj[sortedStr] = [str]
+        }
     }
-
     return Object.values(obj)
 };
