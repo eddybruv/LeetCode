@@ -12,7 +12,7 @@ var romanToInt = function (s) {
 
     let count = 0
 
-    while (i < s.length && j <= s.length) {
+    while (i < s.length ) {
         const numI = romanMap[s[i]];
         const numJ = romanMap[s[j]];
 
