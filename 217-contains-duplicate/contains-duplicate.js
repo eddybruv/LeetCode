@@ -5,6 +5,6 @@
 const containsDuplicate = (nums) => {
     const set = [...new Set(nums)];
     
-    if (nums.length === (set).length) return false
+    if (nums.length === set.length) return false
     else return true
 };
