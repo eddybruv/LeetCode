@@ -5,16 +5,12 @@ func containsDuplicate(nums []int) bool {
 
 	for _, num := range nums {
         _, exists := set[num]
+
         if exists {
-            return true
+            return exists
         }
 		set[num] = struct{}{}
 	}
 
     return false
-
-	// lenNums := len(nums)
-	// lenSet := len(set)
-
-	// return lenNums != lenSet
 }
