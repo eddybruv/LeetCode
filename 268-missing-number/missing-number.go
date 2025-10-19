@@ -1,10 +1,15 @@
+import (
+	"slices"
+)
+
 func missingNumber(nums []int) int {
 	n := len(nums)
-	sum := (n * (n + 1)) / 2
 
-    for _, value := range nums {
-        sum -= value
-    }
+	for i := 0; i <= n; i++ {
+        if !slices.Contains(nums, i) {
+            return i
+        }
+	}
 
-    return sum
+    return 0
 }
