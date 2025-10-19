@@ -4,11 +4,17 @@ func containsDuplicate(nums []int) bool {
 	set := make(map[int]struct{}) // {} 
 
 	for _, num := range nums {
+        _, exists := set[num]
+        if exists {
+            return true
+        }
 		set[num] = struct{}{}
 	}
 
-	lenNums := len(nums)
-	lenSet := len(set)
+    return false
 
-	return lenNums != lenSet
+	// lenNums := len(nums)
+	// lenSet := len(set)
+
+	// return lenNums != lenSet
 }
